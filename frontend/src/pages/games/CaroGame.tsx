@@ -287,6 +287,7 @@ export default function CaroGame({ gameId, winCondition, onBack }: CaroGameProps
         winner ||
         isTimeOut ||
         isTimeOut ||
+        (piece === playerPiece && !isPlayerTurn) ||
         (session?.status !== "playing" && session?.status !== "saved") ||
         isSettingsOpen
       )
@@ -318,6 +319,7 @@ export default function CaroGame({ gameId, winCondition, onBack }: CaroGameProps
       playerPiece,
       winCondition,
       session?.status,
+      isPlayerTurn,
       isSettingsOpen,
     ],
   );
@@ -373,6 +375,8 @@ export default function CaroGame({ gameId, winCondition, onBack }: CaroGameProps
     winner,
     session,
     isTimeOut,
+    handleMove,
+    isPlayerTurn,
     isSettingsOpen,
   ]);
 
