@@ -7,7 +7,6 @@ import {
   Trash2,
   Check,
   CheckCheck,
-  ArrowLeft,
   ChevronLeft,
 } from "lucide-react";
 import { useAuthStore } from "@/stores/useAuthStore";

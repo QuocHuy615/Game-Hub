@@ -2,7 +2,6 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import api from "@/lib/axios";
 import {
-  type Message,
   type MessagesResponse,
   type ConversationsResponse,
 } from "@/types/message";
@@ -118,7 +117,7 @@ export const useDeleteMessage = () => {
     mutationFn: async (messageId: string) => {
       await api.delete(`/messages/${messageId}`);
     },
-    onSuccess: (_, messageId) => {
+    onSuccess: () => {
       toast.success("Đã xóa tin nhắn", { duration: 1500 });
       // Invalidate tất cả các query messages liên quan để cập nhật UI ngay lập tức
       // Lưu ý: Cần invalidate chính xác query key đang active

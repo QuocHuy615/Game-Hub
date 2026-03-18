@@ -5,7 +5,7 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 import api from "@/lib/axios";
-import type { Friend, FriendsListResponse } from "@/types/friend";
+import type { FriendsListResponse } from "@/types/friend";
 import { type SearchUsersResponse, type User } from "@/types/user";
 import { useAuthStore } from "@/stores/useAuthStore";
 import { toast } from "sonner";
@@ -133,7 +133,7 @@ export const useFriendActions = () => {
       toast.success("Đã chấp nhận kết bạn!", { duration: 1500 });
       invalidateFriendData();
     },
-    onError: (error: any) => {
+    onError: () => {
       toast.error("Không thể chấp nhận lời mời");
     },
   });
@@ -146,7 +146,7 @@ export const useFriendActions = () => {
       toast.info("Đã từ chối lời mời");
       invalidateFriendData();
     },
-    onError: (error: any) => {
+    onError: () => {
       toast.error("Lỗi khi từ chối");
     },
   });

@@ -179,7 +179,7 @@ export default function MemoryFreeGame({ onBack }: { onBack?: () => void }) {
   };
 
   // Render card component
-  const CardComponent = ({ cardId, card, isFlipped, isMatched, onClick }: any) => (
+  const CardComponent = ({ card, isFlipped, isMatched, onClick }: any) => (
     <motion.button
       onClick={onClick}
       disabled={isMatched}

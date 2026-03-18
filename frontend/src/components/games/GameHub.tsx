@@ -7,7 +7,6 @@ import { GameControlPanel } from "@/components/games/GameControlPanel";
 import { GamePlayer } from "@/components/games/GamePlayer";
 import { GameHelpDialog } from "@/components/games/GameHelpDialog";
 import { useGameSound } from "@/hooks/useGameSound";
-import { RoundButton } from "@/components/ui/round-button";
 import { GAME_INSTRUCTIONS, type GameType } from "@/components/games/GameInstructions";
 import { BoxButton } from "../ui/box-button";
 

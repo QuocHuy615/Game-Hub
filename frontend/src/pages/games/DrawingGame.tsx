@@ -88,7 +88,6 @@ export default function DrawingGame({ onBack }: { onBack?: () => void }) {
     startGame: startGameSession,
     saveGame: saveGameSession,
     loadGame: loadGameSession,
-    completeGame: completeGameSession,
   } = useGameSession({
     gameId: GAME_ID,
     getBoardState,
