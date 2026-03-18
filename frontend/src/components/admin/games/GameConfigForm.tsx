@@ -66,7 +66,7 @@ export const GameConfigForm = ({ game, onSubmit, onCancel }: GameConfigFormProps
                   hasError && 'border-destructive focus:border-destructive focus:ring-destructive/20'
                 )}
               >
-                {'values' in rules && rules.values.map((opt) => (
+                {'values' in rules && rules.values.map((opt: any) => (
                   <option key={opt} value={opt}>{opt}</option>
                 ))}
               </select>

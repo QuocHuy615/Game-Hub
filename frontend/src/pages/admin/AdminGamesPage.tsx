@@ -136,7 +136,7 @@ export const AdminGamesPage = () => {
                 {isLoading ? (
                   <span className="animate-pulse">--</span>
                 ) : (
-                  data?.total || games.length
+                  data?.paginate?.totalGames ?? games.length
                 )}
               </p>
             </div>
