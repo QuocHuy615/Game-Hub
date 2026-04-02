@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Loader2, ArrowLeft } from "lucide-react";
+import { useAuthStore } from "@/stores/useAuthStore";
 // import type { Game } from "@/types/game";
 import { gameApi } from "@/services/gameApi";
 import { GameCarousel } from "@/components/games/GameCarousel";
@@ -9,6 +10,7 @@ import { GameHelpDialog } from "@/components/games/GameHelpDialog";
 import { useGameSound } from "@/hooks/useGameSound";
 import { GAME_INSTRUCTIONS, type GameType } from "@/components/games/GameInstructions";
 import { BoxButton } from "../ui/box-button";
+import { useNavigate } from "react-router-dom";
 
 const GAME_ASSETS: {
   id: number;
@@ -97,6 +99,8 @@ export const GameHub = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
   const { playSound } = useGameSound();
+  const { token } = useAuthStore();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchGames = async () => {
@@ -138,6 +142,10 @@ export const GameHub = () => {
   };
 
   const handleEnter = () => {
+    // require login to start a game
+    if( !token )
+      navigate("/auth/login")
+
     if (selectedGame && selectedGame.is_active) {
       playSound("button2");
       setIsPlaying(true);
