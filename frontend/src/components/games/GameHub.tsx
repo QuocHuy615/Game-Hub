@@ -18,7 +18,7 @@ import snakeImage from "@/assets/games/snake.webp";
 import tictactoeImage from "@/assets/games/tictactoe.webp";
 import match3Image from "@/assets/games/match3.webp";
 import memoryImage from "@/assets/games/memory.webp";
-import drawingImage from "@/assets/games/drawing.webp";
+import drawingImage from "@/assets/games/paint.webp";
 
 const GAME_ASSETS: {
   id: number;
