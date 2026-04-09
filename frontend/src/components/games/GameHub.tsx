@@ -139,6 +139,7 @@ export default function GameHub() {
     // require login to start a game
     if( !token )
       navigate("/auth/login")
+      return;
 
     if (selectedGame && selectedGame.is_active) {
       playSound("button2");
