@@ -12,6 +12,14 @@ import { GAME_INSTRUCTIONS, type GameType } from "@/components/games/GameInstruc
 import { BoxButton } from "../ui/box-button";
 import { useNavigate } from "react-router-dom";
 
+// import game image
+import caroImage from "@/assets/games/caro.webp";
+import snakeImage from "@/assets/games/snake.webp";
+import tictactoeImage from "@/assets/games/tictactoe.webp";
+import match3Image from "@/assets/games/match3.webp";
+import memoryImage from "@/assets/games/memory.webp";
+import drawingImage from "@/assets/games/drawing.webp";
+
 const GAME_ASSETS: {
   id: number;
   title: string;
@@ -23,8 +31,7 @@ const GAME_ASSETS: {
   {
     id: 1,
     title: "Cờ caro 5 hàng",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFQg0kolxc1eNTMrXMntAkN5E7KW6O2xQAEA&s",
+    image: caroImage,
     variant: "primary",
     url: "/games/caro-5",
     instructionKey: "caro",
@@ -32,8 +39,7 @@ const GAME_ASSETS: {
   {
     id: 2,
     title: "Cờ Caro 4 hàng",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFQg0kolxc1eNTMrXMntAkN5E7KW6O2xQAEA&s",
+    image: caroImage,
     variant: "primary",
     url: "/games/caro-4",
     instructionKey: "caro",
@@ -41,8 +47,7 @@ const GAME_ASSETS: {
   {
     id: 3,
     title: "Rắn Săn Mồi",
-    image:
-      "https://s3-api.fpt.vn/fptvn-storage/2025-12-01/1764574515_tro-ran-san-moi-tren-google-11.jpg",
+    image: snakeImage,
     variant: "danger",
     url: "/games/snake",
     instructionKey: "snake",
@@ -50,26 +55,15 @@ const GAME_ASSETS: {
   {
     id: 4,
     title: "TIC TAC TOE",
-    image:
-      "https://img.freepik.com/premium-vector/tic-tac-toe-game-illustration-tic-tac-toe-game-with-hearts-cross-valentines-day-background_411588-2024.jpg?semt=ais_hybrid&w=740&q=80",
+    image: tictactoeImage,
     variant: "accent",
     url: "/games/tic-tac-toe",
     instructionKey: "tictactoe",
   },
   {
-    id: 3,
-    title: "Rắn Săn Mồi",
-    image:
-      "https://s3-api.fpt.vn/fptvn-storage/2025-12-01/1764574515_tro-ran-san-moi-tren-google-11.jpg",
-    variant: "danger",
-    url: "/games/snake",
-    instructionKey: "snake",
-  },
-  {
     id: 5,
     title: "Kẹo Ngọt",
-    image:
-      "https://play-lh.googleusercontent.com/xx5tqp1jQ2NhaRRoa4vpyI4SbdQn2TcSFRju5VBdi2GO38SI-FqwKKuUg0qtetnNnkdU",
+    image: match3Image,
     variant: "primary",
     url: "/match-3",
     instructionKey: "match3",
@@ -77,7 +71,7 @@ const GAME_ASSETS: {
   {
     id: 6,
     title: "Cờ trí nhớ",
-    image: "https://cdn-icons-png.flaticon.com/512/6168/6168860.png",
+    image: memoryImage,
     variant: "accent",
     url: "/memory",
     instructionKey: "memory",
@@ -85,7 +79,7 @@ const GAME_ASSETS: {
   {
     id: 7,
     title: "Vẽ tranh",
-    image: "https://img.poki-cdn.com/cdn-cgi/image/q=78,scq=50,width=1200,height=1200,fit=cover,f=png/83de99e3e72db597f408c2f3c66afc3c/drawing.png",
+    image: drawingImage,
     variant: "danger",
     url: "/drawing",
     instructionKey: "drawing",
