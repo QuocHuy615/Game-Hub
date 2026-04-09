@@ -86,7 +86,7 @@ const GAME_ASSETS: {
   },
 ];
 
-export const GameHub = () => {
+export default function GameHub() {
   const [games, setGames] = useState<any[]>([]); // Use any[] to include variant
   const [loading, setLoading] = useState(true);
   const [selectedIndex, setSelectedIndex] = useState(0);
