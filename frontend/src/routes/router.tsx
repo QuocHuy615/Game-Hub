@@ -1,59 +1,106 @@
-import { createBrowserRouter, Navigate } from "react-router-dom";
+import { lazy } from "react";
+import { createBrowserRouter } from "react-router-dom";
+import {
+  ProtectedRoute,
+  SuspenseRoute,
+} from "@/routes/RouteWrappers";
 
-import { useAuthStore } from "@/stores/useAuthStore";
-import { MainLayout } from "@/components/layouts/MainLayout";
-import HomePage from "../pages/home/HomePage";
-import NotFoundPage from "@/pages/NotFoundPage";
-import LoginPage from "@/pages/auth/LoginPage";
-import RegisterPage from "@/pages/auth/RegisterPage";
-import ProfilePage from "@/pages/user/profile/Profile";
-import ChatPage from "@/pages/user/chat/ChatPage";
-import RankingPage from "@/pages/user/RankingPage";
+const MainLayout = lazy(() =>
+  import("@/components/layouts/MainLayout").then((m) => ({
+    default: m.MainLayout,
+  })),
+);
+const HomePage = lazy(() => import("../pages/home/HomePage"));
+const NotFoundPage = lazy(() => import("@/pages/NotFoundPage"));
+const LoginPage = lazy(() => import("@/pages/auth/LoginPage"));
+const RegisterPage = lazy(() => import("@/pages/auth/RegisterPage"));
+const ProfilePage = lazy(() => import("@/pages/user/profile/Profile"));
+const ChatPage = lazy(() => import("@/pages/user/chat/ChatPage"));
+const RankingPage = lazy(() => import("@/pages/user/RankingPage"));
 
 // ===== ADMIN IMPORTS =====
-import { AdminGuard } from "@/components/admin/auth/AdminGuard";
-import { AdminLayout } from "@/components/admin/layout/AdminLayout";
-import { AdminDashboardPage } from "@/pages/admin/AdminDashboardPage";
-import { AdminUsersPage } from "@/pages/admin/AdminUsersPage";
-import { AdminGamesPage } from "@/pages/admin/AdminGamesPage";
-import { AdminLoginPage } from "@/pages/admin/AdminLoginPage";
-import AdminStatsPage from "@/pages/admin/AdminStatsPage";
-
-const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
-  const { token } = useAuthStore();
-  if (!token) return <Navigate to="/auth/login" replace />;
-  return <>{children}</>;
-};
+const AdminGuard = lazy(() =>
+  import("@/components/admin/auth/AdminGuard").then((m) => ({
+    default: m.AdminGuard,
+  })),
+);
+const AdminLayout = lazy(() =>
+  import("@/components/admin/layout/AdminLayout").then((m) => ({
+    default: m.AdminLayout,
+  })),
+);
+const AdminDashboardPage = lazy(() =>
+  import("@/pages/admin/AdminDashboardPage").then((m) => ({
+    default: m.AdminDashboardPage,
+  })),
+);
+const AdminUsersPage = lazy(() =>
+  import("@/pages/admin/AdminUsersPage").then((m) => ({
+    default: m.AdminUsersPage,
+  })),
+);
+const AdminGamesPage = lazy(() =>
+  import("@/pages/admin/AdminGamesPage").then((m) => ({
+    default: m.AdminGamesPage,
+  })),
+);
+const AdminLoginPage = lazy(() =>
+  import("@/pages/admin/AdminLoginPage").then((m) => ({
+    default: m.AdminLoginPage,
+  })),
+);
+const AdminStatsPage = lazy(() => import("@/pages/admin/AdminStatsPage"));
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout />,
-    errorElement: <NotFoundPage />,
+    element: (
+      <SuspenseRoute>
+        <MainLayout />
+      </SuspenseRoute>
+    ),
+    errorElement: (
+      <SuspenseRoute>
+        <NotFoundPage />
+      </SuspenseRoute>
+    ),
     children: [
-      { index: true, element: <HomePage /> },
+      {
+        index: true,
+        element: (
+          <SuspenseRoute>
+            <HomePage />
+          </SuspenseRoute>
+        ),
+      },
       {
         path: "profile",
         element: (
-          <ProtectedRoute>
-            <ProfilePage />{" "}
-          </ProtectedRoute>
+          <SuspenseRoute>
+            <ProtectedRoute>
+              <ProfilePage />
+            </ProtectedRoute>
+          </SuspenseRoute>
         ),
       },
       {
         path: "messages",
         element: (
-          <ProtectedRoute>
-            <ChatPage />
-          </ProtectedRoute>
+          <SuspenseRoute>
+            <ProtectedRoute>
+              <ChatPage />
+            </ProtectedRoute>
+          </SuspenseRoute>
         ),
       },
       {
         path: "ranking",
         element: (
-          <ProtectedRoute>
-            <RankingPage />
-          </ProtectedRoute>
+          <SuspenseRoute>
+            <ProtectedRoute>
+              <RankingPage />
+            </ProtectedRoute>
+          </SuspenseRoute>
         ),
       },
     ],
@@ -61,30 +108,82 @@ const router = createBrowserRouter([
 
   {
     path: "/auth/login",
-    element: <LoginPage />,
+    element: (
+      <SuspenseRoute>
+        <LoginPage />
+      </SuspenseRoute>
+    ),
   },
   {
     path: "/auth/register",
-    element: <RegisterPage />,
+    element: (
+      <SuspenseRoute>
+        <RegisterPage />
+      </SuspenseRoute>
+    ),
   },
 
   // ===== ADMIN ROUTES =====
   {
     path: "/admin/login",
-    element: <AdminLoginPage />,
+    element: (
+      <SuspenseRoute>
+        <AdminLoginPage />
+      </SuspenseRoute>
+    ),
   },
   {
     path: "/admin",
-    element: <AdminGuard />,
-    errorElement: <NotFoundPage />,
+    element: (
+      <SuspenseRoute>
+        <AdminGuard />
+      </SuspenseRoute>
+    ),
+    errorElement: (
+      <SuspenseRoute>
+        <NotFoundPage />
+      </SuspenseRoute>
+    ),
     children: [
       {
-        element: <AdminLayout />,
+        element: (
+          <SuspenseRoute>
+            <AdminLayout />
+          </SuspenseRoute>
+        ),
         children: [
-          { index: true, element: <AdminDashboardPage /> },
-          { path: "users", element: <AdminUsersPage /> },
-          { path: "games", element: <AdminGamesPage /> },
-          { path: "stats", element: <AdminStatsPage /> },
+          {
+            index: true,
+            element: (
+              <SuspenseRoute>
+                <AdminDashboardPage />
+              </SuspenseRoute>
+            ),
+          },
+          {
+            path: "users",
+            element: (
+              <SuspenseRoute>
+                <AdminUsersPage />
+              </SuspenseRoute>
+            ),
+          },
+          {
+            path: "games",
+            element: (
+              <SuspenseRoute>
+                <AdminGamesPage />
+              </SuspenseRoute>
+            ),
+          },
+          {
+            path: "stats",
+            element: (
+              <SuspenseRoute>
+                <AdminStatsPage />
+              </SuspenseRoute>
+            ),
+          },
         ],
       },
     ],
